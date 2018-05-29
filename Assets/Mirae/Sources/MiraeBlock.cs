@@ -11,25 +11,26 @@ namespace Mirae
         F2 = 4,
         F3 = 5
     }
-
+    
     public enum BlockType { None, If, While, CloseBracket, Condition, FunctionCall, Execute }
     public abstract class IBlock
     {
         public byte Id { get; private set; }
         public abstract BlockType BlockType { get; }
         public IBlock Next { get; private set; }
-        public virtual object Context { get; protected set; }
+        public virtual string Context { get; protected set; }
 
-        public IBlock(byte id, IBlock prev)
+        public IBlock(byte id, string context, IBlock prev)
         {
             Id = id;
+            Context = context;
             if (prev != null)
                 prev.Next = this;
         }
     }
     public abstract class IOpenBracektBlock : IBlock
     {
-        public IOpenBracektBlock(byte id, IBlock prev) : base(id, prev) { }
+        public IOpenBracektBlock(byte id, string context, IBlock prev) : base(id, context, prev) { }
 
         public CloseBracektBlock CloseBracekt { get; private set; }
         public void SetCloseBracekt(CloseBracektBlock closeBracekt)
@@ -38,12 +39,11 @@ namespace Mirae
         }
     }
 
-    public delegate bool FuncCondition(object condition);
-    public delegate bool FuncCondition<T>(T condition);
+    public delegate bool FuncCondition();
 
     public class IfBlock : IOpenBracektBlock
     {
-        public IfBlock(byte id, IBlock prev, ConditionBlock condition) : base(id, prev)
+        public IfBlock(byte id, IBlock prev, ConditionBlock condition) : base(id, "", prev)
         {
             Condition = condition;
         }
@@ -64,7 +64,7 @@ namespace Mirae
 
     public class CloseBracektBlock : IBlock
     {
-        public CloseBracektBlock(byte id, IBlock prev, IOpenBracektBlock openBlock) : base(id, prev)
+        public CloseBracektBlock(byte id, IBlock prev, IOpenBracektBlock openBlock) : base(id, "", prev)
         {
             OpenBracektBlock = openBlock;
         }
@@ -75,9 +75,8 @@ namespace Mirae
 
     public class ConditionBlock : IBlock
     {
-        public ConditionBlock(byte id, object context, FuncCondition conditionFunction) : base(id, null)
+        public ConditionBlock(byte id, string context, FuncCondition conditionFunction) : base(id, context, null)
         {
-            Context = context;
             ConditionFunction = conditionFunction;
         }
 
@@ -87,7 +86,7 @@ namespace Mirae
 
     public class ExecuteBlock : IBlock
     {
-        public ExecuteBlock(byte id, IBlock prev, Action callback) : base(id, prev)
+        public ExecuteBlock(byte id, string context, IBlock prev, Action callback) : base(id, context, prev)
         {
             Callback = callback;
         }
@@ -99,7 +98,7 @@ namespace Mirae
 
     public class FunctionCallBlock : IBlock
     {
-        public FunctionCallBlock(byte id, IBlock prev, NetworkBlockName targetName) : base(id, prev)
+        public FunctionCallBlock(byte id, string context, IBlock prev, NetworkBlockName targetName) : base(id, context, prev)
         {
             TargetName = targetName;
         }

@@ -26,13 +26,15 @@ namespace Mirae
             ErrorDetail = target;
             BlockCodes = blockCodes;
             StartingBlockName = NetworkBlockName.None;
+            Context = "";
         }
-        public MiraeBuildResult(Dictionary<NetworkBlockName, List<IBlock>> blockCodes, NetworkBlockName startingBlockName)
+        public MiraeBuildResult(Dictionary<NetworkBlockName, List<IBlock>> blockCodes, NetworkBlockName startingBlockName, string context)
         {
             Result = MiraeBuildError.Success;
             ErrorDetail = null;
             BlockCodes = blockCodes;
             StartingBlockName = startingBlockName;
+            Context = context;
         }
 
         public class ErrorTarget
@@ -51,6 +53,7 @@ namespace Mirae
         public ErrorTarget ErrorDetail { get; private set; }
         public NetworkBlockName StartingBlockName { get; private set; }
         public Dictionary<NetworkBlockName, List<IBlock>> BlockCodes { get; private set; }
+        public string Context { get; private set; }
     }
 }
 
@@ -200,12 +203,13 @@ namespace Mirae.CodeBlockEngine
                 dicBlocks.Add(networkBlock.Name, blocks);
             }// foreach (var block in networkBlocks)
 
-            return new MiraeBuildResult(dicBlocks, startingBlock.Name);
+            var context = MiraeContextConverter.Convert(dicBlocks);
+            return new MiraeBuildResult(dicBlocks, startingBlock.Name, context);
         }
 
         private MiraeBuildError BuildExecuteBlock(ExecuteBlock environment, IBlock prev, out IBlock block)
         {
-            block = new ExecuteBlock(environment.Id, prev, environment.Callback);
+            block = new ExecuteBlock(environment.Id, environment.Context, prev, environment.Callback);
             return MiraeBuildError.Success;
         }
 
@@ -272,7 +276,7 @@ namespace Mirae.CodeBlockEngine
 
         private MiraeBuildError BuildFunctionCallBlock(FunctionCallBlock environment, IBlock prev, out IBlock block)
         {
-            block = new FunctionCallBlock(environment.Id, prev, environment.TargetName);
+            block = new FunctionCallBlock(environment.Id, environment.Context, prev, environment.TargetName);
             return MiraeBuildError.Success;
         }
 

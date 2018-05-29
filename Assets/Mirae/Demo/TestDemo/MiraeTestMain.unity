@@ -182,6 +182,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 46319071}
+--- !u!1 &238215469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 238215470}
+  - component: {fileID: 238215472}
+  - component: {fileID: 238215471}
+  m_Layer: 5
+  m_Name: ContextText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &238215470
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 238215469}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 431643821}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -242.75, y: -16.050007}
+  m_SizeDelta: {x: -485.5, y: -32.1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &238215471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 238215469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &238215472
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 238215469}
 --- !u!1001 &241063368
 Prefab:
   m_ObjectHideFlags: 0
@@ -284,8 +358,8 @@ Prefab:
     - target: {fileID: 114069397810934134, guid: 308a2bf8da9bf3a4caf94ca238ecc776,
         type: 2}
       propertyPath: conditionEvents.Array.data[0].context
-      value: 
-      objectReference: {fileID: 641892454}
+      value: "\uD1A0\uAE00\uC774 \uCF1C\uC838\uC788\uC73C\uBA74"
+      objectReference: {fileID: 0}
     - target: {fileID: 114069397810934134, guid: 308a2bf8da9bf3a4caf94ca238ecc776,
         type: 2}
       propertyPath: conditionEvents.Array.data[0].id
@@ -326,6 +400,26 @@ Prefab:
       propertyPath: conditionEvents.Array.data[1].callback._typeName
       value: Mirae.MiraeConditionEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114069397810934134, guid: 308a2bf8da9bf3a4caf94ca238ecc776,
+        type: 2}
+      propertyPath: executeEvents.Array.data[0].context
+      value: "\uC704\uB85C \uC6C0\uC9C1\uC5EC\uC694"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114069397810934134, guid: 308a2bf8da9bf3a4caf94ca238ecc776,
+        type: 2}
+      propertyPath: executeEvents.Array.data[3].context
+      value: "\uC67C\uCABD\uC73C\uB85C \uC6C0\uC9C1\uC5EC\uC694"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114069397810934134, guid: 308a2bf8da9bf3a4caf94ca238ecc776,
+        type: 2}
+      propertyPath: executeEvents.Array.data[1].context
+      value: "\uC544\uB798\uB85C \uC6C0\uC9C1\uC5EC\uC694"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114069397810934134, guid: 308a2bf8da9bf3a4caf94ca238ecc776,
+        type: 2}
+      propertyPath: executeEvents.Array.data[2].context
+      value: "\uC624\uB978\uCABD\uC73C\uB85C \uC6C0\uC9C1\uC5EC\uC694"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 308a2bf8da9bf3a4caf94ca238ecc776, type: 2}
@@ -580,6 +674,7 @@ RectTransform:
   m_Children:
   - {fileID: 2112204430}
   - {fileID: 400526646}
+  - {fileID: 238215470}
   - {fileID: 1300255308}
   - {fileID: 683321135}
   - {fileID: 641892455}
@@ -623,7 +718,7 @@ RectTransform:
   m_Children:
   - {fileID: 2142494733}
   m_Father: {fileID: 431643821}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -745,12 +840,12 @@ RectTransform:
   - {fileID: 816463858}
   - {fileID: 1957855314}
   m_Father: {fileID: 431643821}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: 4.5}
-  m_SizeDelta: {x: 155.4, y: 91}
+  m_AnchoredPosition: {x: 18.54, y: -139.25}
+  m_SizeDelta: {x: 118.88, y: 77.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &641892456
 MonoBehaviour:
@@ -837,7 +932,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 431643821}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -987,7 +1082,7 @@ RectTransform:
   m_Children:
   - {fileID: 46319072}
   m_Father: {fileID: 431643821}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1172,6 +1267,7 @@ MonoBehaviour:
   connectText: {fileID: 2112204431}
   buildText: {fileID: 400526647}
   runtimeText: {fileID: 1300255309}
+  contextText: {fileID: 238215471}
 --- !u!4 &1136319704
 Transform:
   m_ObjectHideFlags: 0
@@ -1224,7 +1320,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 431643821}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1349,6 +1445,7 @@ MonoBehaviour:
       PublicKeyToken=null
   executeEvents:
   - id: 10
+    context: "\uC704\uB85C \uC6C0\uC9C1\uC5EC\uC694"
     callback:
       m_PersistentCalls:
         m_Calls:
@@ -1366,6 +1463,7 @@ MonoBehaviour:
       m_TypeName: Mirae.MiraeExecuteEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
   - id: 11
+    context: "\uC544\uB798\uB85C \uC6C0\uC9C1\uC5EC\uC694"
     callback:
       m_PersistentCalls:
         m_Calls:
@@ -1383,6 +1481,7 @@ MonoBehaviour:
       m_TypeName: Mirae.MiraeExecuteEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
   - id: 12
+    context: "\uC624\uB978\uCABD\uC73C\uB85C \uC6C0\uC9C1\uC5EC\uC694"
     callback:
       m_PersistentCalls:
         m_Calls:
@@ -1400,6 +1499,7 @@ MonoBehaviour:
       m_TypeName: Mirae.MiraeExecuteEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
   - id: 13
+    context: "\uC67C\uCABD\uC73C\uB85C \uC6C0\uC9C1\uC5EC\uC694"
     callback:
       m_PersistentCalls:
         m_Calls:
@@ -1419,6 +1519,7 @@ MonoBehaviour:
   conditionEvents:
   - id: 14
     type: 0
+    context: "\uD1A0\uAE00\uC774 \uCF1C\uC838\uC788\uC73C\uBA74"
     callback:
       _target: {fileID: 641892457}
       _methodName: get_isOn

@@ -27,9 +27,9 @@ namespace Mirae.CodeBlockEngine
             { byte.MinValue, null },
             { 1, new IfBlock(1, null, null) },
             { 2, new WhileBlock(2, null, null) },
-            { 3, new FunctionCallBlock(3, null, NetworkBlockName.F1) },
-            { 4, new FunctionCallBlock(4, null, NetworkBlockName.F2) },
-            { 5, new FunctionCallBlock(5, null, NetworkBlockName.F3) },
+            { 3, new FunctionCallBlock(3, "첫번째 함수를", null, NetworkBlockName.F1) },
+            { 4, new FunctionCallBlock(4, "두번째 함수를", null, NetworkBlockName.F2) },
+            { 5, new FunctionCallBlock(5, "세번째 함수를", null, NetworkBlockName.F3) },
             { 8, new CloseBracektBlock(8, null, null) },
             { byte.MaxValue, null },
         };
@@ -44,33 +44,33 @@ namespace Mirae.CodeBlockEngine
             }
         }
 
-        public void AddExecuteBlock(byte id, Action callback)
+        public void AddExecuteBlock(byte id, string context, Action callback)
         {
             CheckId(id);
 
-            mEnvironment.Add(id, new ExecuteBlock(id, null, callback));
+            mEnvironment.Add(id, new ExecuteBlock(id, context, null, callback));
         }
 
-        public void AddConditionBlock<T>(byte id, T context, FuncCondition<T> conditionFunction)
+        public void AddConditionBlock(byte id, string context, FuncCondition conditionFunction)
         {
             CheckId(id);
 
-            mEnvironment.Add(id, new ConditionBlock(id, context, (obj) => { return conditionFunction((T)obj); }));
+            mEnvironment.Add(id, new ConditionBlock(id, context, () => { return conditionFunction(); }));
         }
 
-        public void AddIfBlock<T>(byte id, T context, FuncCondition<T> conditionFunction)
+        public void AddIfBlock(byte id, string context, FuncCondition conditionFunction)
         {
             CheckId(id);
 
-            var conditionBlock = new ConditionBlock(id, context, (obj) => { return conditionFunction.Invoke((T)obj); });
+            var conditionBlock = new ConditionBlock(id, context, () => { return conditionFunction.Invoke(); });
             mEnvironment.Add(id, new IfBlock(id, null, conditionBlock));
         }
 
-        public void AddWhileBlock<T>(byte id, T context, FuncCondition<T> conditionFunction)
+        public void AddWhileBlock(byte id, string context, FuncCondition conditionFunction)
         {
             CheckId(id);
 
-            var conditionBlock = new ConditionBlock(id, context, (obj) => { return conditionFunction.Invoke((T)obj); });
+            var conditionBlock = new ConditionBlock(id, context, () => { return conditionFunction.Invoke(); });
             mEnvironment.Add(id, new WhileBlock(id, null, conditionBlock));
         }
 

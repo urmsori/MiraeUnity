@@ -24,6 +24,7 @@ namespace Mirae
     public class MiraeIdExecuteEventPair
     {
         public byte id = 9;
+        public string context = "";
         public MiraeExecuteEvent callback = null;
     }
     [Serializable]
@@ -31,12 +32,14 @@ namespace Mirae
     {
         public byte id = 9;
         public MiraeBranchType type = MiraeBranchType.If;
+        public string context = "";
         public MiraeConditionEvent callback = null;
     }
 
 
     public class MiraeService : MonoBehaviour
     {
+        public bool connectOnStart = true;
         public MiraeConnectEvent onConnectDone;
         public MiraeBuildEvent onBuildCode;
         public MiraeRuntimeEvent onRunCode;
@@ -62,20 +65,20 @@ namespace Mirae
         {
             foreach (var pair in executeEvents)
             {
-                Environment.AddExecuteBlock(pair.id, () => { if (pair.callback != null) pair.callback.Invoke(); });
+                Environment.AddExecuteBlock(pair.id, pair.context, () => { if (pair.callback != null) pair.callback.Invoke(); });
             }
             foreach (var pair in conditionEvents)
             {
                 switch (pair.type)
                 {
                     case MiraeBranchType.Condition:
-                        Environment.AddConditionBlock(pair.id, null, (object obj) => { return pair.callback.Invoke(); });
+                        Environment.AddConditionBlock(pair.id, pair.context, () => { return pair.callback.Invoke(); });
                         break;
                     case MiraeBranchType.If:
-                        Environment.AddIfBlock(pair.id, null, (object obj) => { return pair.callback.Invoke(); });
+                        Environment.AddIfBlock(pair.id, pair.context, () => { return pair.callback.Invoke(); });
                         break;
                     case MiraeBranchType.While:
-                        Environment.AddWhileBlock(pair.id, null, (object obj) => { return pair.callback.Invoke(); });
+                        Environment.AddWhileBlock(pair.id, pair.context, () => { return pair.callback.Invoke(); });
                         break;
                     default:
                         break;
@@ -89,6 +92,12 @@ namespace Mirae
             AddInitCallbacks();
             mNetwork.ConnectDone += MNetwork_Ready;
             mNetwork.ButtonPushed += MNetwork_ButtonPushed;
+        }
+
+        private void Start()
+        {
+            if (connectOnStart)
+                Connect();
         }
 
         private void MNetwork_ButtonPushed(IEnumerable<MiraeNetworkBlock> blocks)

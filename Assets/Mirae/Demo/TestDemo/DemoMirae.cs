@@ -11,6 +11,7 @@ namespace Mirae.Demo
         public Text connectText;
         public Text buildText;
         public Text runtimeText;
+        public Text contextText;
 
         public void ConnectDoneHandler(bool success)
         {
@@ -25,6 +26,7 @@ namespace Mirae.Demo
             {
                 case MiraeBuildError.Success:
                     buildText.text = "Build Done";
+                    contextText.text = result.Context;
                     break;
                 default:
                     buildText.text = result.Result.ToString();

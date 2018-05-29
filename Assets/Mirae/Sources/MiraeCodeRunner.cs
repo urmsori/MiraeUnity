@@ -226,7 +226,7 @@ namespace Mirae.CodeBlockEngine
                 return MiraeRuntimeError.NullConditionFunction;
             }
 
-            var conditionResult = block.Condition.ConditionFunction.Invoke(block.Condition.Context);
+            var conditionResult = block.Condition.ConditionFunction.Invoke();
             if (conditionResult)
             {
                 mCurrentBlock = block.Next;
